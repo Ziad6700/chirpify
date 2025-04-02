@@ -1,6 +1,6 @@
 <?php
 session_start();
-global $hostdb, $usr, $pwd, $PDOoptions;
+global $pdo;
 require_once('authentication.php');
 
 if (isset($_POST['login'])) {
@@ -18,7 +18,7 @@ if (isset($_POST['login'])) {
         $errorMsg = "Password must be at least 5 characters long";
     } else {
 
-        $pdo = new PDO($hostdb, $usr, $pwd, $PDOoptions);
+        //$pdo = new PDO($hostdb, $usr, $pwd, $PDOoptions);
         $qry = "SELECT * FROM users WHERE email = ?";
         $stmt = $pdo->prepare($qry);
         $stmt->execute([$email]);
