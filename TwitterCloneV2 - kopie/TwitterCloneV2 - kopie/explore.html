@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitter Clone - Explore</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f8fa;
+            display: flex;
+        }
+        .sidebar {
+            width: 250px;
+            background: white;
+            padding: 20px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-right: 1px solid #ddd;
+        }
+        .sidebar nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .sidebar nav ul li {
+            margin: 15px 0;
+        }
+        .sidebar nav ul li a {
+            text-decoration: none;
+            color: black;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .post-btn {
+            background: #1da1f2;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 30px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .profile {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .profile img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+        }
+        .profile-info span {
+            font-size: 14px;
+            color: #555;
+        }
+        main {
+            flex: 1;
+            max-width: 600px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .search-bar {
+            margin-bottom: 20px;
+        }
+        .search-bar input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            font-size: 16px;
+        }
+        .explore-tabs {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .explore-tabs button {
+            background: none;
+            border: none;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            flex: 1;
+            text-align: center;
+        }
+        .explore-tabs button.active {
+            font-weight: bold;
+            border-bottom: 2px solid #1da1f2;
+        }
+        .post-feed .post {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        .post-feed .profile-pic {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .post-feed .post-content {
+            flex: 1;
+        }
+        .post-feed .post-content h4 {
+            margin: 0;
+            font-size: 16px;
+        }
+        .post-feed .post-content h4 span {
+            font-weight: normal;
+            color: #555;
+        }
+        .post-feed .post-content p {
+            margin: 5px 0;
+        }
+        .post-feed .post-actions button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            margin-right: 10px;
+            color: #555;
+        }
+        .right-sidebar {
+            width: 300px;
+            background: white;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .who-to-follow {
+            margin-bottom: 20px;
+        }
+        .who-to-follow h3 {
+            margin: 0 0 10px;
+        }
+        .who-to-follow .profile {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .who-to-follow .profile img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .who-to-follow .profile-info {
+            flex: 1;
+        }
+        .who-to-follow .profile-info strong {
+            font-size: 16px;
+        }
+        .who-to-follow .profile-info span {
+            font-size: 14px;
+            color: #555;
+        }
+        .who-to-follow button {
+            background: #1da1f2;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        .who-to-follow .show-more {
+            color: #1da1f2;
+            text-decoration: none;
+            display: block;
+            margin-top: 10px;
+        }
+        .footer {
+            font-size: 12px;
+            color: #555;
+        }
+        .footer a {
+            color: #1da1f2;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+<aside class="sidebar">
+    <nav>
+        <ul>
+            <li><a href="#">🏠 Home</a></li>
+            <li><a href="#">🔍 Explore</a></li>
+            <li><a href="#">🔔 Notifications</a></li>
+            <li><a href="#">✉️ Messages</a></li>
+            <li><a href="#">👤 Profile</a></li>
+            <li><a href="#">⚙️ More</a></li>
+        </ul>
+    </nav>
+    <button class="post-btn">Post</button>
+    <div class="profile">
+        <img src="profile-pic.jpg" alt="Profielfoto">
+        <div class="profile-info">
+            <strong>Jan Jansen</strong>
+            <span>@jan123</span>
+        </div>
+    </div>
+</aside>
+
+<main>
+    <div class="search-bar">
+        <input type="text" placeholder="Zoeken op Twitter">
+    </div>
+
+    <div class="explore-tabs">
+        <button class="active">For you</button>
+        <button>Trending</button>
+        <button>News</button>
+        <button>Sports</button>
+        <button>Entertainment</button>
+    </div>
+
+    <section class="post-feed">
+        <div class="post">
+            <img src="profile-pic.jpg" alt="Profielfoto" class="profile-pic">
+            <div class="post-content">
+                <h4>Jan Jansen <span>@jan123 - 5m geleden</span></h4>
+                <p>Dit is een post op de Explore-pagina! 🌍</p>
+                <div class="post-actions">
+                    <button>💬 10</button>
+                    <button>🔁 5</button>
+                    <button>❤️ 20</button>
+                </div>
+            </div>
+        </div>
+        <!-- Meer posts kunnen hier worden toegevoegd -->
+    </section>
+</main>
+
+<aside class="right-sidebar">
+    <div class="who-to-follow">
+        <h3>Who to follow</h3>
+        <div class="profile">
+            <img src="user1.jpg" alt="User 1">
+            <div class="profile-info">
+                <strong>User One</strong>
+                <span>@user1</span>
+            </div>
+            <button>Follow</button>
+        </div>
+        <div class="profile">
+            <img src="user2.jpg" alt="User 2">
+            <div class="profile-info">
+                <strong>User Two</strong>
+                <span>@user2</span>
+            </div>
+            <button>Follow</button>
+        </div>
+        <div class="profile">
+            <img src="user3.jpg" alt="User 3">
+            <div class="profile-info">
+                <strong>User Three</strong>
+                <span>@user3</span>
+            </div>
+            <button>Follow</button>
+        </div>
+        <a href="#" class="show-more">Show more</a>
+    </div>
+
+    <div class="footer">
+        <a href="#">Terms of Service</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Cookie Policy</a>
+        <a href="#">Accessibility</a>
+        <a href="#">Ads info</a>
+        <a href="#">More</a>
+        <span>© 2025 X Corp.</span>
+    </div>
+</aside>
+</body>
+</html>

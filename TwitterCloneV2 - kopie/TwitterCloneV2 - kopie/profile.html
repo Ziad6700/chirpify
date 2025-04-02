@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitter Clone - Profile</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f8fa;
+            display: flex;
+        }
+        .sidebar {
+            width: 250px;
+            background: white;
+            padding: 20px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-right: 1px solid #ddd;
+        }
+        .sidebar nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .sidebar nav ul li {
+            margin: 15px 0;
+        }
+        .sidebar nav ul li a {
+            text-decoration: none;
+            color: black;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .post-btn {
+            background: #1da1f2;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 30px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .profile {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .profile img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+        }
+        .profile-info span {
+            font-size: 14px;
+            color: #555;
+        }
+        main {
+            flex: 1;
+            max-width: 600px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .profile-header {
+            margin-bottom: 20px;
+        }
+        .profile-header .banner {
+            height: 150px;
+            background-color: #ccc;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        .profile-header .profile-pic {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid white;
+            margin-top: -50px;
+            margin-left: 20px;
+        }
+        .profile-header .edit-profile {
+            float: right;
+            background: white;
+            color: #1da1f2;
+            border: 1px solid #1da1f2;
+            padding: 5px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        .profile-header h1 {
+            margin: 10px 0 5px;
+        }
+        .profile-header .username {
+            color: #555;
+        }
+        .profile-header .joined {
+            color: #555;
+            margin-bottom: 10px;
+        }
+        .profile-stats {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .profile-stats span {
+            color: #555;
+        }
+        .profile-tabs {
+            display: flex;
+            justify-content: space-around;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+        .profile-tabs button {
+            background: none;
+            border: none;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            flex: 1;
+            text-align: center;
+        }
+        .profile-tabs button.active {
+            font-weight: bold;
+            border-bottom: 2px solid #1da1f2;
+        }
+        .right-sidebar {
+            width: 300px;
+            background: white;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .search-bar {
+            margin-bottom: 20px;
+        }
+        .search-bar input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            font-size: 16px;
+        }
+        .who-to-follow {
+            margin-bottom: 20px;
+        }
+        .who-to-follow h3 {
+            margin: 0 0 10px;
+        }
+        .who-to-follow .profile {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .who-to-follow .profile img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .who-to-follow .profile-info {
+            flex: 1;
+        }
+        .who-to-follow .profile-info strong {
+            font-size: 16px;
+        }
+        .who-to-follow .profile-info span {
+            font-size: 14px;
+            color: #555;
+        }
+        .who-to-follow button {
+            background: #1da1f2;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        .who-to-follow .show-more {
+            color: #1da1f2;
+            text-decoration: none;
+            display: block;
+            margin-top: 10px;
+        }
+        .whats-happening {
+            margin-bottom: 20px;
+        }
+        .whats-happening h3 {
+            margin: 0 0 10px;
+        }
+        .whats-happening .trend {
+            margin-bottom: 10px;
+        }
+        .whats-happening .trend strong {
+            font-size: 14px;
+        }
+        .whats-happening .trend span {
+            font-size: 12px;
+            color: #555;
+        }
+        .footer {
+            font-size: 12px;
+            color: #555;
+        }
+        .footer a {
+            color: #1da1f2;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+<aside class="sidebar">
+    <nav>
+        <ul>
+            <li><a href="#">🏠 Home</a></li>
+            <li><a href="#">🔍 Explore</a></li>
+            <li><a href="#">🔔 Notifications</a></li>
+            <li><a href="#">✉️ Messages</a></li>
+            <li><a href="#">👤 Profile</a></li>
+            <li><a href="#">⚙️ More</a></li>
+        </ul>
+    </nav>
+    <button class="post-btn">Post</button>
+    <div class="profile">
+        <img src="profile-pic.jpg" alt="Profielfoto">
+        <div class="profile-info">
+            <strong>Jan Jansen</strong>
+            <span>@jan123</span>
+        </div>
+    </div>
+</aside>
+
+<main>
+    <div class="profile-header">
+        <div class="banner"></div>
+        <img src="profile-pic.jpg" alt="Profielfoto" class="profile-pic">
+        <button class="edit-profile">Edit Profile</button>
+        <h1>Viresh</h1>
+        <div class="username">@Viresh467796900</div>
+        <div class="joined">Joined February 2025</div>
+        <div class="profile-stats">
+            <span>1 Following</span>
+            <span>0 Followers</span>
+        </div>
+    </div>
+
+    <div class="profile-tabs">
+        <button class="active">Posts</button>
+        <button>Replies</button>
+        <button>Highlights</button>
+        <button>Articles</button>
+        <button>Media</button>
+        <button>Likes</button>
+    </div>
+
+    <div class="who-to-follow">
+        <h3>Who to follow</h3>
+        <div class="profile">
+            <img src="geert-wilders.jpg" alt="Geert Wilders">
+            <div class="profile-info">
+                <strong>Geert Wilders</strong>
+                <span>@geertwilderspvv</span>
+                <p>Voorzitter Tweede Kamerfractie PVV / Member of Parliament (MP) / Chairman Party for Freedom (PVV)</p>
+            </div>
+            <button>Follow</button>
+        </div>
+        <div class="profile">
+            <img src="rtl-nieuws.jpg" alt="RTL Nieuws">
+            <div class="profile-info">
+                <strong>RTL Nieuws</strong>
+                <span>@RTLnieuws</span>
+                <p>Volg het nieuws terwijl het gebeurt. De laatste berichten uit binnen- en buitenland. Politiek, sport, economie, opmerkelijk nieuws.</p>
+            </div>
+            <button>Follow</button>
+        </div>
+        <div class="profile">
+            <img src="nu-nl.jpg" alt="NU.nl">
+            <div class="profile-info">
+                <strong>NU.nl</strong>
+                <span>@NUnl</span>
+                <p>Volg http://NU.nl voor het belangrijkste nieuws op het gebied van binnenland, buitenland, politiek, klimaat, economie, sport, tech en entertainment.</p>
+            </div>
+            <button>Follow</button>
+        </div>
+        <a href="#" class="show-more">Show more</a>
+    </div>
+</main>
+
+<aside class="right-sidebar">
+    <div class="search-bar">
+        <input type="text" placeholder="Zoeken op Twitter">
+    </div>
+
+    <div class="who-to-follow">
+        <h3>You might like</h3>
+        <div class="profile">
+            <img src="geert-wilders.jpg" alt="Geert Wilders">
+            <div class="profile-info">
+                <strong>Geert Wilders</strong>
+                <span>@geertwilderspvv</span>
+            </div>
+            <button>Follow</button>
+        </div>
+        <div class="profile">
+            <img src="nu-nl.jpg" alt="NU.nl">
+            <div class="profile-info">
+                <strong>NU.nl</strong>
+                <span>@NUnl</span>
+            </div>
+            <button>Follow</button>
+        </div>
+        <div class="profile">
+            <img src="jort-kelder.jpg" alt="Jort Kelder">
+            <div class="profile-info">
+                <strong>Jort Kelder</strong>
+                <span>@jortkelder</span>
+            </div>
+            <button>Follow</button>
+        </div>
+        <a href="#" class="show-more">Show more</a>
+    </div>
+
+    <div class="whats-happening">
+        <h3>What’s happening</h3>
+        <div class="trend">
+            <strong>Trending in Netherlands</strong>
+            <span>Volkskrant</span>
+        </div>
+        <div class="trend">
+            <strong>Trending in Netherlands</strong>
+            <span>#feynec</span>
+        </div>
+        <div class="trend">
+            <strong>Trending in Netherlands</strong>
+            <span>#studiovoetbal</span>
+        </div>
+        <div class="trend">
+            <strong>Trending in Netherlands</strong>
+            <span>wappie</span>
+        </div>
+        <a href="#" class="show-more">Show more</a>
+    </div>
+
+    <div class="footer">
+        <a href="#">Terms of Service</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Cookie Policy</a>
+        <a href="#">Accessibility</a>
+        <a href="#">Ads info</a>
+        <a href="#">More</a>
+        <span>© 2025 X Corp.</span>
+    </div>
+</aside>
+</body>
+</html>

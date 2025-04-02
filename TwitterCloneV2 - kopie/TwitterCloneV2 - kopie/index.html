@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitter Clone - Home</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f8fa;
+            display: flex;
+        }
+        .sidebar {
+            width: 250px;
+            background: white;
+            padding: 20px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-right: 1px solid #ddd;
+        }
+        .sidebar nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .sidebar nav ul li {
+            margin: 15px 0;
+        }
+        .sidebar nav ul li a {
+            text-decoration: none;
+            color: black;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .post-btn {
+            background: #1da1f2;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 30px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .profile {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .profile img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+        }
+        .profile-info span {
+            font-size: 14px;
+            color: #555;
+        }
+        main {
+            flex: 1;
+            max-width: 600px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .tabs {
+            display: flex;
+            justify-content: space-around;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+
+        .tabs button {
+            background: none;
+            border: none;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            flex: 1;
+            text-align: center;
+            color: #555; /* Standaard tekstkleur */
+            position: relative; /* Voor de onderstreep */
+            transition: background-color 0.3s ease, color 0.3s ease; /* Soepele overgang */
+        }
+
+        .tabs button:hover {
+            background-color: rgba(29, 161, 242, 0.1); /* Lichtgrijs effect bij hover */
+        }
+
+        .tabs button.active {
+            font-weight: bold;
+            color: #1da1f2; /* Blauwe tekst voor actieve knop */
+        }
+
+        .tabs button.active::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: #1da1f2; /* Blauwe onderstreep */
+            position: absolute;
+            bottom: -1px; /* Plaats de streep onder de knop */
+            left: 0;
+        }
+        .tweet-box {
+            margin-bottom: 20px;
+        }
+        .tweet-box textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            resize: none;
+            font-size: 16px;
+        }
+        .tweet-box button {
+            background: #1da1f2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-top: 10px;
+            float: right;
+        }
+        .tweet-feed .tweet {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        .tweet-feed .profile-pic {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .tweet-feed .tweet-content {
+            flex: 1;
+        }
+        .tweet-feed .tweet-content h4 {
+            margin: 0;
+            font-size: 16px;
+        }
+        .tweet-feed .tweet-content h4 span {
+            font-weight: normal;
+            color: #555;
+        }
+        .tweet-feed .tweet-content p {
+            margin: 5px 0;
+        }
+        .tweet-feed .tweet-actions button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            margin-right: 10px;
+            color: #555;
+        }
+        .right-sidebar {
+            width: 300px;
+            background: white;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .search-bar {
+            margin-bottom: 20px;
+        }
+        .search-bar input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            font-size: 16px;
+        }
+        .premium-box {
+            background: #1da1f2;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .premium-box h3 {
+            margin: 0 0 10px;
+        }
+        .premium-box p {
+            margin: 0 0 10px;
+        }
+        .premium-box button {
+            background: white;
+            color: #1da1f2;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .who-to-follow {
+            margin-bottom: 20px;
+        }
+        .who-to-follow h3 {
+            margin: 0 0 10px;
+        }
+        .who-to-follow .profile {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .who-to-follow .profile img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .who-to-follow .profile-info {
+            flex: 1;
+        }
+        .who-to-follow .profile-info strong {
+            font-size: 16px;
+        }
+        .who-to-follow .profile-info span {
+            font-size: 14px;
+            color: #555;
+        }
+        .who-to-follow button {
+            background: #1da1f2;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        .who-to-follow .show-more {
+            color: #1da1f2;
+            text-decoration: none;
+            display: block;
+            margin-top: 10px;
+        }
+        .whats-happening {
+            margin-bottom: 20px;
+        }
+        .whats-happening h3 {
+            margin: 0 0 10px;
+        }
+        .whats-happening .trend {
+            margin-bottom: 10px;
+        }
+        .whats-happening .trend strong {
+            font-size: 14px;
+        }
+        .whats-happening .trend span {
+            font-size: 12px;
+            color: #555;
+        }
+        .footer {
+            font-size: 12px;
+            color: #555;
+        }
+        .footer a {
+            color: #1da1f2;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: #222;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .cookie-banner p {
+            margin: 0 0 10px;
+        }
+        .cookie-banner button {
+            margin: 5px;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .accept-all {
+            background: #1da1f2;
+            color: white;
+        }
+        .accept-essential {
+            background: #555;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<aside class="sidebar">
+
+    <nav>
+        <ul>
+            <li><a href="#">🏠 Home</a></li>
+            <li><a href="#">🔍 Explore</a></li>
+            <li><a href="#">🔔 Notifications</a></li>
+            <li><a href="#">✉️ Messages</a></li>
+            <li><a href="#">👤 Profile</a></li>
+            <li><a href="#">⚙️ More</a></li>
+        </ul>
+    </nav>
+    <button class="post-btn">Post</button>
+    <div class="profile">
+        <img src="profile-pic.jpg" alt="Profielfoto">
+        <div class="profile-info">
+            <strong>Jan Jansen</strong>
+            <span>@jan123</span>
+        </div>
+    </div>
+</aside>
+
+<main>
+    <div class="tabs">
+        <button class="active">For you</button>
+        <button>Following</button>
+    </div>
+
+    <section class="tweet-box">
+        <textarea placeholder="Wat gebeurt er?" rows="3"></textarea>
+        <button>Plaatsen</button>
+    </section>
+
+    <section class="tweet-feed">
+        <div class="tweet">
+            <img src="profile-pic.jpg" alt="Profielfoto" class="profile-pic">
+            <div class="tweet-content">
+                <h4>Jan Jansen <span>@jan123 - 5m geleden</span></h4>
+                <p>Dit is mijn eerste tweet op deze geweldige Twitter-kloon! 🚀</p>
+                <div class="tweet-actions">
+                    <button>💬 10</button>
+                    <button>🔁 5</button>
+                    <button>❤️ 20</button>
+                </div>
+            </div>
+        </div>
+        <!-- Meer tweets kunnen hier worden toegevoegd -->
+    </section>
+</main>
+
+<aside class="right-sidebar">
+    <div class="search-bar">
+        <input type="text" placeholder="Zoeken op Twitter">
+    </div>
+
+    <div class="premium-box">
+        <h3>Subscribe to Premium</h3>
+        <p>Subscribe to unlock new features and if eligible, receive a share of ads revenue.</p>
+        <button>Subscribe</button>
+    </div>
+
+    <div class="who-to-follow">
+        <h3>Who to follow</h3>
+        <div class="profile">
+            <img src="user1.jpg" alt="User 1">
+            <div class="profile-info">
+                <strong>User One</strong>
+                <span>@user1</span>
+            </div>
+            <button>Follow</button>
+        </div>
+        <div class="profile">
+            <img src="user2.jpg" alt="User 2">
+            <div class="profile-info">
+                <strong>User Two</strong>
+                <span>@user2</span>
+            </div>
+            <button>Follow</button>
+        </div>
+        <div class="profile">
+            <img src="user3.jpg" alt="User 3">
+            <div class="profile-info">
+                <strong>User Three</strong>
+                <span>@user3</span>
+            </div>
+            <button>Follow</button>
+        </div>
+        <a href="#" class="show-more">Show more</a>
+    </div>
+
+    <div class="whats-happening">
+        <h3>What's happening</h3>
+        <div class="trend">
+            <strong>#Trending1</strong>
+            <span>1.234 tweets</span>
+        </div>
+        <div class="trend">
+            <strong>#Trending2</strong>
+            <span>987 tweets</span>
+        </div>
+        <div class="trend">
+            <strong>#Trending3</strong>
+            <span>567 tweets</span>
+        </div>
+    </div>
+
+    <div class="footer">
+        <a href="#">Terms of Service</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Cookie Policy</a>
+        <a href="#">Accessibility</a>
+        <a href="#">Ads info</a>
+        <a href="#">More</a>
+        <span>© 2025 X Corp.</span>
+    </div>
+</aside>
+
+<div class="cookie-banner" id="cookieBanner">
+    <p>Did someone say … cookies? X and its partners use cookies to provide you with a better, safer and faster service and to support our business. Some cookies are necessary to use our services, improve our services, and make sure they work properly. <a href="#">Show more about your choices</a>.</p>
+    <button class="accept-all" onclick="acceptCookies(true)">Accept all cookies</button>
+    <button class="accept-essential" onclick="acceptCookies(false)">Only accept essential cookies</button>
+</div>
+</body>
+<script>
+
+    function acceptCookies(all) {
+        document.getElementById('cookieBanner').style.display = 'none';
+        if (all) {
+            console.log('Cookies geaccepteerd');
+        } else {
+            console.log('Alleen essentiële cookies geaccepteerd');
+        }
+    }
+    document.querySelectorAll('.tabs button').forEach(button => {
+        button.addEventListener('click', () => {
+            // Verwijder de 'active' klasse van alle knoppen
+            document.querySelectorAll('.tabs button').forEach(btn => btn.classList.remove('active'));
+            // Voeg de 'active' klasse toe aan de geklikte knop
+            button.classList.add('active');
+        });
+    });
+
+
+</script>
+</html>

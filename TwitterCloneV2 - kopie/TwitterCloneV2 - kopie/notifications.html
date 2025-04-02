@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitter Clone - Notifications</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f8fa;
+            display: flex;
+        }
+        .sidebar {
+            width: 250px;
+            background: white;
+            padding: 20px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-right: 1px solid #ddd;
+        }
+        .sidebar nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .sidebar nav ul li {
+            margin: 15px 0;
+        }
+        .sidebar nav ul li a {
+            text-decoration: none;
+            color: black;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        main {
+            flex: 1;
+            max-width: 600px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .notifications-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .notifications-tabs {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .notifications-tabs button {
+            background: none;
+            border: none;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            flex: 1;
+            text-align: center;
+        }
+        .notifications-tabs button.active {
+            font-weight: bold;
+            border-bottom: 2px solid #1da1f2;
+        }
+        .no-notifications {
+            text-align: center;
+            color: #555;
+            font-size: 16px;
+            margin-top: 50px;
+        }
+        .right-sidebar {
+            width: 300px;
+            background: white;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .search-bar input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .footer {
+            font-size: 12px;
+            color: #555;
+        }
+        .footer a {
+            color: #1da1f2;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        /* Toevoeging voor de What’s happening box */
+        .explore-box {
+            background-color: #f5f8fa;
+            padding: 20px;
+            position: fixed; /* Fix de box op een specifieke locatie */
+            bottom: 20px; /* 20px van de onderkant van de pagina */
+            right: 20px; /* 20px van de rechterkant van de pagina */
+            width: 300px; /* Breedte aanpassen naar wens */
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 100; /* Zorg ervoor dat de box voor andere inhoud staat */
+        }
+
+        .explore-box h2 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .explore-box .post {
+            margin-bottom: 15px;
+        }
+
+        .explore-box .post p {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .explore-box .post span {
+            color: #1da1f2;
+            font-weight: bold;
+        }
+
+        .show-more {
+            text-align: center;
+            margin-top: 20px;
+            color: #1da1f2;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .show-more:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+<aside class="sidebar">
+    <nav>
+        <ul>
+            <li><a href="#">🏠 Home</a></li>
+            <li><a href="#">🔍 Explore</a></li>
+            <li><a href="#">🔔 Notifications</a></li>
+            <li><a href="#">✉️ Messages</a></li>
+            <li><a href="#">👤 Profile</a></li>
+            <li><a href="#">⚙️ More</a></li>
+        </ul>
+    </nav>
+</aside>
+
+<main>
+    <div class="notifications-header">
+        Notifications
+        <span>⚙️</span>
+    </div>
+
+    <div class="notifications-tabs">
+        <button class="active">All</button>
+        <button>Verified</button>
+        <button>Mentions</button>
+    </div>
+
+    <div class="no-notifications">
+        <p>Nothing to see here — yet</p>
+        <p>From likes to reposts and a whole lot more, this is where all the action happens.</p>
+    </div>
+
+    <!-- Box onder Show More met What's happening -->
+    <div class="explore-box">
+        <h2>What’s happening</h2>
+        <div class="post">
+            <p><span>4 Nations Face-Off: Unveiled</span> (NHL/NHLPA) <span class="live">LIVE</span></p>
+            <p>Sports · Trending</p>
+        </div>
+        <div class="post">
+            <p><span>#milfey</span> Trending in Netherlands</p>
+        </div>
+        <div class="post">
+            <p><span>Willem Engel</span> Trending in Netherlands</p>
+        </div>
+        <div class="post">
+            <p><span>Robje</span> Trending in Netherlands</p>
+        </div>
+        <div class="post">
+            <p><span>rijksoverheid</span> Trending in Netherlands</p>
+        </div>
+        <div class="show-more">Show more</div>
+    </div>
+</main>
+
+<aside class="right-sidebar">
+    <div class="search-bar">
+        <input type="text" placeholder="Search Twitter">
+    </div>
+
+    <div class="who-to-follow">
+        <h3>Who to follow</h3>
+        <div class="profile">
+            <img src="user1.jpg" alt="User 1">
+            <div class="profile-info">
+                <strong>User One</strong>
+                <span>@user1</span>
+            </div>
+            <button>Follow</button>
+        </div>
+        <div class="profile">
+            <img src="user2.jpg" alt="User 2">
+            <div class="profile-info">
+                <strong>User Two</strong>
+                <span>@user2</span>
+            </div>
+            <button>Follow</button>
+        </div>
+        <div class="profile">
+            <img src="user3.jpg" alt="User 3">
+            <div class="profile-info">
+                <strong>User Three</strong>
+                <span>@user3</span>
+            </div>
+            <button>Follow</button>
+        </div>
+        <a href="#" class="show-more">Show more</a>
+    </div>
+
+    <div class="footer">
+        <a href="#">Terms of Service</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Cookie Policy</a>
+        <a href="#">Accessibility</a>
+        <a href="#">Ads info</a>
+        <a href="#">More</a>
+        <span>© 2025 X Corp.</span>
+    </div>
+</aside>
+</body>
+</html>

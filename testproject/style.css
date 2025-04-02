@@ -1,0 +1,12 @@
+*{
+    margin: 0;
+}
+
+body {
+    margin: 0;
+    background-color: #c6c5c5;
+}
+
+.login_user{
+    display: block;
+}

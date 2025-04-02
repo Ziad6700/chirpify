@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitter Clone - Messages</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f8fa;
+            display: flex;
+        }
+
+        /* Sidebar stijl (zelfde als andere pagina's) */
+        .sidebar {
+            width: 250px;
+            background: white;
+            padding: 20px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-right: 1px solid #ddd;
+        }
+
+        .sidebar nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar nav ul li {
+            margin: 15px 0;
+        }
+
+        .sidebar nav ul li a {
+            text-decoration: none;
+            color: black;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Hoofd sectie stijl */
+        main {
+            flex: 1;
+            max-width: 900px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+
+        }
+
+        /* Berichten sectie */
+        .messages-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .messages-header .icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .messages-header .icons span {
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .inbox-box {
+            margin-top: 20px;
+            background-color: #f5f8fa;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            flex: 1;
+        }
+
+        .inbox-box h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .inbox-box p {
+            color: #555;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .write-message-btn {
+            background-color: #1da1f2;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .write-message-btn:hover {
+            background-color: #0d8de0;
+        }
+
+        /* Selecteer bericht sectie */
+        .select-message-box {
+            width: 300px;
+            background-color: #f5f8fa;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .select-message-box h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .select-message-box p {
+            color: #555;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .new-message-btn {
+            background-color: #1da1f2;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .new-message-btn:hover {
+            background-color: #0d8de0;
+        }
+
+        .footer {
+            font-size: 12px;
+            color: #555;
+        }
+
+        .footer a {
+            color: #1da1f2;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+<aside class="sidebar">
+    <nav>
+        <ul>
+            <li><a href="#">🏠 Home</a></li>
+            <li><a href="#">🔍 Explore</a></li>
+            <li><a href="#">🔔 Notifications</a></li>
+            <li><a href="#">✉️ Messages</a></li>
+            <li><a href="#">👤 Profile</a></li>
+            <li><a href="#">⚙️ More</a></li>
+        </ul>
+    </nav>
+</aside>
+
+<main>
+    <!-- Berichten sectie -->
+    <div class="inbox-box">
+        <div class="messages-header">
+            <div>Messages</div>
+            <div class="icons">
+                <span>⚙️</span>
+                <span>📝</span>
+            </div>
+        </div>
+
+        <p>Welcome to your inbox! Drop a line, share posts and more with private conversations between you and others on X.</p>
+        <button class="write-message-btn">Write a message</button>
+    </div>
+
+    <!-- Selecteer een bericht sectie -->
+    <div class="select-message-box">
+        <h2>Select a message</h2>
+        <p>Choose from your existing conversations, start a new one, or just keep swimming.</p>
+        <button class="new-message-btn">New Message</button>
+    </div>
+</main>
+
+</body>
+</html>
